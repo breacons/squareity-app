@@ -1,0 +1,35 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-squareityapp-dev-224458-authRole",
+      "UnauthRoleArn": "arn:aws:iam::209099773344:role/amplify-squareityapp-dev-224458-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::209099773344:role/amplify-squareityapp-dev-224458-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-squareityapp-dev-224458-deployment",
+      "UnauthRoleName": "amplify-squareityapp-dev-224458-unauthRole",
+      "StackName": "amplify-squareityapp-dev-224458",
+      "StackId": "arn:aws:cloudformation:eu-central-1:209099773344:stack/amplify-squareityapp-dev-224458/cb251500-1fff-11ed-a49e-02ab156dfe12",
+      "AmplifyAppId": "d3lmmf1s8949eb"
+    },
+    "categories": {
+      "auth": {
+        "squareityapp219b5168": {}
+      },
+      "function": {
+        "squareityApiProxy": {
+          "deploymentBucketName": "amplify-squareityapp-dev-224458-deployment",
+          "s3Key": "amplify-builds/squareityApiProxy-316734782b584a452b53-build.zip"
+        },
+        "squareityAppCheckoutWebhook": {
+          "deploymentBucketName": "amplify-squareityapp-dev-224458-deployment",
+          "s3Key": "amplify-builds/squareityAppCheckoutWebhook-53555148522f6e7a374b-build.zip"
+        },
+        "squaretySendEmail": {
+          "deploymentBucketName": "amplify-squareityapp-dev-224458-deployment",
+          "s3Key": "amplify-builds/squaretySendEmail-577a3145303863464d2b-build.zip",
+          "sesEmail": "elodimarci@gmail.com"
+        }
+      }
+    }
+  }
+}

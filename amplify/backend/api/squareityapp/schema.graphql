@@ -1,0 +1,55 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } }
+
+type DonationItemPairs @model {
+  id: ID!
+  virtualItemId: ID! @index(name: "byVirtualId", queryField: "pairByVirtualId")
+  physicalItemId: ID! @index(name: "byPhysicalId", queryField: "pairByPhysicalId")
+}
+
+type DonorItem @model {
+  id: ID!
+  donorCustomerId: String
+  itemId: String
+  date: AWSDateTime
+}
+
+type DonationAppointmentProposal @model {
+  id: ID!
+  customerId: String!
+  orderId: String!
+  serviceId: String!
+  appointmentId: ID @index(name: "byAppointmentId", queryField: "proposalByAppointmentId")
+}
+
+enum TokenType {
+  Seller,
+  Buyer
+}
+type Token @model {
+  project: Project @belongsTo
+  accessToken: String!
+  refreshToken: String!
+  expiresAt: String!
+  merchantId: String!
+  type: TokenType!
+}
+
+type Project @model {
+  id: ID!
+  name: String!
+
+  userId: ID! @index(name: "byUser", queryField: "projectByUser")
+  slug: ID! @index(name: "bySlug", queryField: "projectBySlug")
+  tokens: [Token]  @hasMany
+  defaultLocationId: String
+  donationCategoryId: String
+  stockCategoryId: String
+  donorCustomerGroupId: String
+  clientCustomerGroupId: String
+
+  heroTitle: String
+  description: String
+  # display, ...
+}
