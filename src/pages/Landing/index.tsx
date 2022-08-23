@@ -10,10 +10,10 @@ export const Landing = ({}: Props) => {
   return (
     <div className={styles.container}>
       <Typography.Title level={1} className={styles.heroTitle}>
-        Squaerity scales non-profit organisations through digital transformation.
+        Squareity scales non-profit organisations through digital transformation.
       </Typography.Title>
       <Typography.Paragraph className={styles.description}>
-        Squaerity offers a completely digital platform to manage humanitarian and charitable projects, including
+        Squareity offers a completely digital platform to manage humanitarian and charitable projects, including
         fundraising, inventory management, donations and customer relationships.
       </Typography.Paragraph>
       <Space size={12} direction="horizontal" style={{marginTop: 10}}>

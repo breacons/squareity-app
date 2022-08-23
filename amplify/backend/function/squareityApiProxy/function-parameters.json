@@ -1,3 +1,15 @@
 {
-  "lambdaLayers": []
+  "lambdaLayers": [],
+  "permissions": {
+    "api": {
+      "squareityapp": [
+        "Query"
+      ]
+    },
+    "auth": {
+      "squareityapp219b5168": [
+        "read"
+      ]
+    }
+  }
 }

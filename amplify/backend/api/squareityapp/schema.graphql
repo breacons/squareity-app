@@ -6,6 +6,7 @@ type DonationItemPairs @model {
   id: ID!
   virtualItemId: ID! @index(name: "byVirtualId", queryField: "pairByVirtualId")
   physicalItemId: ID! @index(name: "byPhysicalId", queryField: "pairByPhysicalId")
+  projectId: ID! @index(name: "byProjectId", queryField: "pairByProjectId")
 }
 
 type DonorItem @model {

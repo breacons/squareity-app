@@ -2,7 +2,7 @@ import React from 'react';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import LanguageProvider from './components/LanguageProvider';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import {} from './url';
 import Landing from './pages/Landing';
 import { ApolloProvider } from '@apollo/client';
@@ -56,7 +56,7 @@ function App() {
                     </Authenticator>
                   }
                 >
-                  <Route index element={<ConsoleLanding />} />
+                  {/*<Route index element={<ConsoleLanding />} />*/}
                   <Route path={'setup'} element={<ConsoleSetup />} />
                   <Route path={'donations'} element={<ConsoleDonations />} />
                   <Route path={'customers'} element={<ConsoleCustomers />} />
@@ -65,6 +65,18 @@ function App() {
                     element={<ConsoleAppointmentDetails />}
                   />
                   <Route path={'appointments'} element={<ConsoleAppointments />} />
+                  <Route
+                    path="/console"
+                    element={
+                      <Navigate to="/console/customers" />
+                    }
+                  />
+                  <Route
+                    path="/console/*"
+                    element={
+                      <Navigate to="/console/customers" />
+                    }
+                  />
                 </Route>
 
                 <Route path={':slug'} element={<ProjectLayout />}>
@@ -75,10 +87,17 @@ function App() {
                   <Route path={'volunteer'} element={<ProjectVolunteering />} />
                   <Route path={'contact'} element={<ProjectContact />} />
                   <Route path={'apply'} element={<ProjectApply />} />
+
                 </Route>
                 <Route path={'/'} element={<ProjectLayout />}>
                   <Route index element={<Landing />} />
                 </Route>
+                <Route
+                  path="*"
+                  element={
+                    <Navigate to="/" />
+                  }
+                />
               </Routes>
             </BrowserRouter>
           </LanguageProvider>

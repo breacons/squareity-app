@@ -90,13 +90,14 @@ export const ConsoleDonations = ({}: Props) => {
   return (
     <div>
       <Typography.Title level={1}>Donations</Typography.Title>
+      <Typography.Title level={3}>Inventory</Typography.Title>
       <InventorySlider project={project} client={client} retryCounter={retryCounter} />
       <Divider />
-      <Typography.Title level={2}>Donation orders</Typography.Title>
+      <Typography.Title level={3}>Orders</Typography.Title>
 
       <List
         itemLayout="horizontal"
-        dataSource={data?.result?.orders || []}
+        dataSource={data?.result?.orders?.filter((o) => o?.totalMoney?.amount && o?.totalMoney?.amount > 0) || []}
         renderItem={(order) => (
           <List.Item
             actions={[

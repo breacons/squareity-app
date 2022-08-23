@@ -178,29 +178,7 @@ export const ConsoleAppointmentDetails = ({}: Props) => {
         }
         style={{ marginTop: 36 }}
       >
-        <List
-          itemLayout="horizontal"
-          dataSource={order.result.order?.lineItems || []}
-          renderItem={(item) => (
-            <List.Item>
-              <List.Item.Meta
-                title={
-                  <span>
-                    <strong>{item.name}</strong>{' '}
-                    <Badge count={item.quantity} style={{ marginLeft: 8 }} />
-                  </span>
-                }
-                description={
-                  <Space direction="horizontal" size={12}>
-                    <span>{item.variationName}</span>
-                    <span>–</span>
-                    <span>#{item.uid?.slice(0, 6).toUpperCase()}</span>
-                  </Space>
-                }
-              />
-            </List.Item>
-          )}
-        />
+
       </Card>
     </div>
   );

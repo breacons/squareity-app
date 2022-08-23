@@ -50,7 +50,24 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
-      "dependsOn": []
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "squareityapp",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        },
+        {
+          "category": "auth",
+          "resourceName": "squareityapp219b5168",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
     },
     "squareityAppCheckoutWebhook": {
       "build": true,
@@ -72,6 +89,13 @@
           ]
         }
       ]
+    }
+  },
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "providerPlugin": "awscloudformation",
+      "type": "manual"
     }
   }
 }

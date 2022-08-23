@@ -43,6 +43,7 @@ export default function ConsoleLayout({ signOut}: Props) {
   const {
     data: projectWrapper,
     loading: projectLoading,
+    called,
     refetch,
   } = useQuery(gql(projectByUser), { variables: { userId: me.id }, skip: !me.id });
 
@@ -54,7 +55,7 @@ export default function ConsoleLayout({ signOut}: Props) {
     return projectWrapper.projectByUser.items[0];
   }, [projectWrapper]);
 
-  if (!project) {
+  if (!called || projectLoading) {
     return <SpinnerOverlay spinning={true} />;
   }
 
@@ -63,7 +64,7 @@ export default function ConsoleLayout({ signOut}: Props) {
         <Layout className={styles.layout}>
           <Sidebar />
           <Layout>
-            <Header signOut={signOut} />
+            <Header signOut={signOut} project={project}/>
             <Content className={classNames([styles.content, styles.whiteBackground])}>
               <Outlet context={{ client, project }} />
             </Content>

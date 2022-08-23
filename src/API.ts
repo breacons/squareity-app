@@ -6,11 +6,13 @@ export type CreateDonationItemPairsInput = {
   id?: string | null,
   virtualItemId: string,
   physicalItemId: string,
+  projectId: string,
 };
 
 export type ModelDonationItemPairsConditionInput = {
   virtualItemId?: ModelIDInput | null,
   physicalItemId?: ModelIDInput | null,
+  projectId?: ModelIDInput | null,
   and?: Array< ModelDonationItemPairsConditionInput | null > | null,
   or?: Array< ModelDonationItemPairsConditionInput | null > | null,
   not?: ModelDonationItemPairsConditionInput | null,
@@ -61,6 +63,7 @@ export type DonationItemPairs = {
   id: string,
   virtualItemId: string,
   physicalItemId: string,
+  projectId: string,
   createdAt: string,
   updatedAt: string,
 };
@@ -69,6 +72,7 @@ export type UpdateDonationItemPairsInput = {
   id: string,
   virtualItemId?: string | null,
   physicalItemId?: string | null,
+  projectId?: string | null,
 };
 
 export type DeleteDonationItemPairsInput = {
@@ -306,6 +310,7 @@ export type ModelDonationItemPairsFilterInput = {
   id?: ModelIDInput | null,
   virtualItemId?: ModelIDInput | null,
   physicalItemId?: ModelIDInput | null,
+  projectId?: ModelIDInput | null,
   and?: Array< ModelDonationItemPairsFilterInput | null > | null,
   or?: Array< ModelDonationItemPairsFilterInput | null > | null,
   not?: ModelDonationItemPairsFilterInput | null,
@@ -402,6 +407,7 @@ export type CreateDonationItemPairsMutation = {
     id: string,
     virtualItemId: string,
     physicalItemId: string,
+    projectId: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -418,6 +424,7 @@ export type UpdateDonationItemPairsMutation = {
     id: string,
     virtualItemId: string,
     physicalItemId: string,
+    projectId: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -434,6 +441,7 @@ export type DeleteDonationItemPairsMutation = {
     id: string,
     virtualItemId: string,
     physicalItemId: string,
+    projectId: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -794,6 +802,7 @@ export type GetDonationItemPairsQuery = {
     id: string,
     virtualItemId: string,
     physicalItemId: string,
+    projectId: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -813,6 +822,7 @@ export type ListDonationItemPairsQuery = {
       id: string,
       virtualItemId: string,
       physicalItemId: string,
+      projectId: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -1066,6 +1076,7 @@ export type PairByVirtualIdQuery = {
       id: string,
       virtualItemId: string,
       physicalItemId: string,
+      projectId: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -1089,6 +1100,31 @@ export type PairByPhysicalIdQuery = {
       id: string,
       virtualItemId: string,
       physicalItemId: string,
+      projectId: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type PairByProjectIdQueryVariables = {
+  projectId: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelDonationItemPairsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type PairByProjectIdQuery = {
+  pairByProjectId?:  {
+    __typename: "ModelDonationItemPairsConnection",
+    items:  Array< {
+      __typename: "DonationItemPairs",
+      id: string,
+      virtualItemId: string,
+      physicalItemId: string,
+      projectId: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -1197,6 +1233,7 @@ export type OnCreateDonationItemPairsSubscription = {
     id: string,
     virtualItemId: string,
     physicalItemId: string,
+    projectId: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1208,6 +1245,7 @@ export type OnUpdateDonationItemPairsSubscription = {
     id: string,
     virtualItemId: string,
     physicalItemId: string,
+    projectId: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1219,6 +1257,7 @@ export type OnDeleteDonationItemPairsSubscription = {
     id: string,
     virtualItemId: string,
     physicalItemId: string,
+    projectId: string,
     createdAt: string,
     updatedAt: string,
   } | null,

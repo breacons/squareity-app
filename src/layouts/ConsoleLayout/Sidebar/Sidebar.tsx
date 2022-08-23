@@ -6,9 +6,10 @@ import {
   ClockCircleOutlined,
   BlockOutlined,
   LikeOutlined,
-  BarChartOutlined
+  BarChartOutlined,
+  ExportOutlined
 } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import {Button, Layout, Menu} from "antd";
 import classNames from "classnames";
 import { filter as _filter, identity as _identity, map as _map } from "lodash";
 import React from "react";
@@ -36,8 +37,6 @@ const AdminMenu = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  console.log(getMainRouter(location.pathname))
-
   return (
     <Menu
       defaultSelectedKeys={[URL_MAIN]}
@@ -52,9 +51,9 @@ const AdminMenu = () => {
       }}
     >
       <MenuItem
-        key={'/console'}
-        href={'/console'}
-        title={<FormattedMessage defaultMessage="Dashboard" id="dashboard" />}
+        key={'/console/setup'}
+        href={'/console/setup'}
+        title={<FormattedMessage defaultMessage="Settings" id="dashboard" />}
         icon={<BlockOutlined />}
       />
       <MenuItem
@@ -91,21 +90,6 @@ const AdminMenu = () => {
       />
 
 
-      {/*<SubMenu*/}
-      {/*  key={URL_SERVICES_LIST}*/}
-      {/*  title={*/}
-      {/*    <Link to={URL_SERVICES_LIST}>*/}
-      {/*      <BorderOutlined />*/}
-      {/*      <FormattedMessage key="Services" defaultMessage="Szolgáltatások" />*/}
-      {/*    </Link>*/}
-      {/*  }*/}
-      {/*>*/}
-      {/*  <MenuItem*/}
-      {/*    key={URL_PROVIDER_LIST}*/}
-      {/*    href={URL_PROVIDER_LIST}*/}
-      {/*    title={<FormattedMessage key="Providers" defaultMessage="Szolgáltatók" />}*/}
-      {/*  />*/}
-      {/*</SubMenu>*/}
     </Menu>
   );
 };

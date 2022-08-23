@@ -128,6 +128,9 @@ export const ConsoleCustomers = ({}: Props) => {
         renderItem={(customer) => (
           <List.Item
             actions={[
+              <Button type="default" key="history">
+                History
+              </Button>,
               <Button type="primary" onClick={() => setSelectedCustomer(customer)} key="assign">
                 Assign Donation
               </Button>,

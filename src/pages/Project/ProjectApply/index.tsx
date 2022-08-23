@@ -79,16 +79,7 @@ export const ProjectApply = ({}: Props) => {
               </div>
             )}
             else={() => (
-              <Form
-                validator={validator}
-                onSubmit={createCustomer}
-                initialValues={{
-                  givenName: 'James',
-                  familyName: 'Merritt',
-                  emailAddress: 'james@gmail.com',
-                  birthday: '2022-08-02',
-                }}
-              >
+              <Form validator={validator} onSubmit={createCustomer} initialValues={{}}>
                 {({ valid }) => (
                   <>
                     <Row gutter={16}>

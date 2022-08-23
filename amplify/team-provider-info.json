@@ -18,7 +18,7 @@
       "function": {
         "squareityApiProxy": {
           "deploymentBucketName": "amplify-squareityapp-dev-224458-deployment",
-          "s3Key": "amplify-builds/squareityApiProxy-316734782b584a452b53-build.zip"
+          "s3Key": "amplify-builds/squareityApiProxy-4c6a4b4f304449697369-build.zip"
         },
         "squareityAppCheckoutWebhook": {
           "deploymentBucketName": "amplify-squareityapp-dev-224458-deployment",
@@ -26,8 +26,14 @@
         },
         "squaretySendEmail": {
           "deploymentBucketName": "amplify-squareityapp-dev-224458-deployment",
-          "s3Key": "amplify-builds/squaretySendEmail-577a3145303863464d2b-build.zip",
+          "s3Key": "amplify-builds/squaretySendEmail-575073464f596e304f72-build.zip",
           "sesEmail": "elodimarci@gmail.com"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3lmmf1s8949eb",
+          "type": "manual"
         }
       }
     }

@@ -3,6 +3,7 @@ import {apolloClient} from "@/lib/apollo";
 import {gql} from "@apollo/client";
 import {listDonationItemPairs} from "../../../graphql/queries";
 import {createDonationItemPairs} from "../../../graphql/mutations";
+import {nanoid} from "nanoid";
 // import styles from './styles.module.less';
 
 interface Props {}
@@ -62,10 +63,10 @@ export const ConsoleLanding = ({}: Props) => {
   useEffect(() => {
     const promises = data.map((pair) =>apolloClient.mutate({
       mutation: gql(createDonationItemPairs),
-      variables: { input : pair},
+      variables: { input : {...pair, projectId: '55f05de6-2174-45ca-91ac-a77657e88dd9', id: nanoid()}},
     }));
 
-    // Promise.all(promises).then((result) => console.log({result}))
+    Promise.all(promises).then((result) => console.log({result}))
   }, [])
 
   return <div>ConsoleLanding</div>;

@@ -61,7 +61,7 @@ export const ConsoleAppointments = ({}) => {
     data: bookings,
     isLoading,
     refetch,
-  } = useQuery('items', () => client.bookingsApi.listBookings());
+  } = useQuery('items', () => client.bookingsApi.listBookings(20));
 
   return (
     <div>

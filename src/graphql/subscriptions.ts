@@ -8,6 +8,7 @@ export const onCreateDonationItemPairs = /* GraphQL */ `
       id
       virtualItemId
       physicalItemId
+      projectId
       createdAt
       updatedAt
     }
@@ -19,6 +20,7 @@ export const onUpdateDonationItemPairs = /* GraphQL */ `
       id
       virtualItemId
       physicalItemId
+      projectId
       createdAt
       updatedAt
     }
@@ -30,6 +32,7 @@ export const onDeleteDonationItemPairs = /* GraphQL */ `
       id
       virtualItemId
       physicalItemId
+      projectId
       createdAt
       updatedAt
     }

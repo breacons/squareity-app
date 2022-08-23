@@ -8,6 +8,7 @@ export const getDonationItemPairs = /* GraphQL */ `
       id
       virtualItemId
       physicalItemId
+      projectId
       createdAt
       updatedAt
     }
@@ -24,6 +25,7 @@ export const listDonationItemPairs = /* GraphQL */ `
         id
         virtualItemId
         physicalItemId
+        projectId
         createdAt
         updatedAt
       }
@@ -234,6 +236,7 @@ export const pairByVirtualId = /* GraphQL */ `
         id
         virtualItemId
         physicalItemId
+        projectId
         createdAt
         updatedAt
       }
@@ -260,6 +263,34 @@ export const pairByPhysicalId = /* GraphQL */ `
         id
         virtualItemId
         physicalItemId
+        projectId
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const pairByProjectId = /* GraphQL */ `
+  query PairByProjectId(
+    $projectId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelDonationItemPairsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    pairByProjectId(
+      projectId: $projectId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        virtualItemId
+        physicalItemId
+        projectId
         createdAt
         updatedAt
       }
