@@ -15,7 +15,7 @@ import dayjs from 'dayjs';
 import { SpinnerOverlay } from '@/components/SpinnerOverlay';
 import { API } from 'aws-amplify';
 import If from '@/components/If';
-import {CheckCircleFilled} from "@ant-design/icons";
+import { CheckCircleFilled } from '@ant-design/icons';
 
 interface Props {}
 
@@ -107,8 +107,10 @@ export const ConsoleAppointmentDetails = ({}: Props) => {
           {customer?.result.customer?.familyName}
           <If
             condition={order.result.order?.state === 'COMPLETED'}
-            then={() => (<CheckCircleFilled style={{ color: '#52c41a', fontSize: 28, marginLeft: 12 }} /> )} />
-
+            then={() => (
+              <CheckCircleFilled style={{ color: '#52c41a', fontSize: 28, marginLeft: 12 }} />
+            )}
+          />
         </Typography.Title>
         <If
           condition={order.result.order?.state !== 'COMPLETED'}
@@ -178,7 +180,32 @@ export const ConsoleAppointmentDetails = ({}: Props) => {
         }
         style={{ marginTop: 36 }}
       >
-
+        <List
+          itemLayout="horizontal"
+          dataSource={order.result.order?.lineItems || []}
+          renderItem={(item) => (
+            <List.Item>
+              <List.Item.Meta
+                title={
+                  <span>
+                    <strong>{item.name}</strong>{' '}
+                    <Badge
+                      count={item.quantity}
+                      style={{ marginLeft: 8, backgroundColor: '#006aff', fontWeight: 500 }}
+                    />
+                  </span>
+                }
+                description={
+                  <Space direction="horizontal" size={12}>
+                    <span>{item.variationName}</span>
+                    <span>–</span>
+                    <span>#{item.uid?.slice(0, 6).toUpperCase()}</span>
+                  </Space>
+                }
+              />
+            </List.Item>
+          )}
+        />
       </Card>
     </div>
   );

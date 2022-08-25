@@ -31,13 +31,6 @@ export const ProjectLayout = ({}: Props) => {
     refetch,
   } = useQuery(gql(projectBySlug), { variables: { slug } });
 
-  const client = useMemo(() => {
-    return new Client({
-      environment: Environment.Custom,
-      customUrl: `${PROXY_URL}/buyer/${slug}`,
-    });
-  }, [slug]);
-
   const project: Project | null = useMemo(() => {
     if (!projectWrapper?.projectBySlug?.items || projectWrapper.projectBySlug.items.length === 0) {
       return null;
@@ -46,9 +39,23 @@ export const ProjectLayout = ({}: Props) => {
     return projectWrapper.projectBySlug.items[0];
   }, [projectWrapper]);
 
-  if (!project && slug) {
+
+  const client = useMemo(() => {
+    if (project) {
+      return new Client({
+        environment: Environment.Custom,
+        customUrl: `${PROXY_URL}/buyer/${project.id}`,
+      });
+    }
+
+  }, [slug, project]);
+
+
+  if ((!project && slug) || (!client && slug) ) {
     return <SpinnerOverlay spinning={true} />;
   }
+
+  console.log({project, slug, client})
 
   return (
     <div>
@@ -101,7 +108,7 @@ export const ProjectLayout = ({}: Props) => {
                 <strong>About</strong>
               </Typography.Title>
               <Typography.Link className={styles.footerLink}>
-                How it Get Lucky works?
+                How Squareity works?
               </Typography.Link>
               <Typography.Link className={styles.footerLink}>Team</Typography.Link>
               <Typography.Link className={styles.footerLink}>Contact</Typography.Link>

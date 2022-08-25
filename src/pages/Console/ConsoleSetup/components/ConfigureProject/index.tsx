@@ -49,6 +49,7 @@ const sellerScopes = [
 ];
 const buyerScopes = [
   'CUSTOMERS_WRITE',
+  'CUSTOMERS_READ',
   'APPOINTMENTS_READ',
   'APPOINTMENTS_WRITE',
   'APPOINTMENTS_ALL_READ',
@@ -223,7 +224,7 @@ export const ConfigureProject = ({ project, loadingToken }: Props) => {
               <Col span={8}>
                 <Card title="Customer Account" style={{ width: '100%' }}>
                   <If
-                    condition={buyerToken && dayjs(buyerToken?.expiresAt) > dayjs() && false}
+                    condition={buyerToken && dayjs(buyerToken?.expiresAt) > dayjs()}
                     then={() => (
                       <div style={{ textAlign: 'center' }}>
                         <CheckCircleFilled

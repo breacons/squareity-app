@@ -52,17 +52,16 @@ export const Profile = ({ signOut, project }: Props) => {
           {/*<Avatar size="small" icon={<UserOutlined />} src={me?.avatar} className={styles.avatar} />*/}
           <div className={styles.text}>
             <Typography.Text className={styles.name} strong>
-              {/*<FormattedMessage*/}
-              {/*  id="UserLayout.Header.Profile.Name"*/}
-              {/*  defaultMessage="{firstName} {lastName}"*/}
-              {/*  values={{*/}
-              {/*    lastName: me?.lastName,*/}
-              {/*    firstName: me?.firstName,*/}
-              {/*  }}*/}
-              {/*/>*/}Marci Squareity
+              <FormattedMessage
+                id="UserLayout.Header.Profile.Name"
+                defaultMessage="{firstName} {lastName}"
+                values={{
+                  lastName: me?.lastName,
+                  firstName: me?.firstName,
+                }}
+              />
             </Typography.Text>
-            {/*<Typography.Text className={styles.email}>{me?.email}</Typography.Text>*/}
-            <Typography.Text className={styles.email}>test@squareity.space</Typography.Text>
+            <Typography.Text className={styles.email}>{me?.email}</Typography.Text>
           </div>
         </div>
       </Dropdown>

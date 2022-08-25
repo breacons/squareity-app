@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { ConsoleContext } from '@/layouts/ConsoleLayout/ConsoleLayout';
 import { useQuery } from 'react-query';
-import { Button, Divider, List, message, Modal, Space, Tag, Typography } from 'antd';
+import { Button, Divider, List, message, Modal, notification, Space, Tag, Typography } from 'antd';
 import { Field } from 'react-final-form';
 import { Form } from '@/components/Form';
 import { joi } from '@/lib/joi';
@@ -14,7 +14,7 @@ import { createDonationAppointmentProposal } from '../../../graphql/mutations';
 import axios from 'axios';
 import { InventorySlider } from '@/components/InventorySlider';
 import { nanoid } from 'nanoid';
-import { EMAIL_LAMBDA_URL } from '@/lib/config';
+import { APP_URL, EMAIL_LAMBDA_URL, PROXY_URL } from '@/lib/config';
 import { SectionTitle } from '@/components/Typography';
 import { Price } from '../../../locale/Price';
 import dayjs from 'dayjs';
@@ -92,28 +92,41 @@ export const ConsoleCustomers = ({}: Props) => {
       },
     });
 
-    /*
-    const email = await axios.post(
-      EMAIL_LAMBDA_URL as string,
-      {
-        appointmentProposalId: appointmentProposal.data.createDonationAppointmentProposal.id,
-        slug: project.slug,
+    const actionUrl = `${APP_URL}/${project.slug}/booking/${appointmentProposal.data.createDonationAppointmentProposal.id}`;
+    const email = await axios.post(`${PROXY_URL}/email`, {
+      appointmentProposalId: appointmentProposal.data.createDonationAppointmentProposal.id,
+      slug: project.slug,
+      recipient: selectedCustomer.email,
+      variables: {
+        recipientFirstName: selectedCustomer.givenName,
+        projectName: project.name,
+        signature: `${project.name} team`,
+        actionUrl,
       },
-      {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
-        },
-      },
-    );
-     */
+    });
+
+    console.log(email);
 
     setRetryCounter(retryCounter + 1);
     setLoading(false);
     setSelectedCustomer(null);
     message.success('Client has been notified about the available donation');
     console.log({ order, appointmentProposal });
+
+    notification.info({
+      message: `Test Booking`,
+      duration: 5000,
+      description: (
+        <span>
+          You can test the appointment booking{' '}
+          <a href={actionUrl} target="_blank" rel="noreferrer">
+            here
+          </a>
+          .
+        </span>
+      ),
+      placement: 'bottomRight',
+    });
   };
 
   return (

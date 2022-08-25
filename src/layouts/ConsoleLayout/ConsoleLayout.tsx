@@ -33,12 +33,6 @@ export default function ConsoleLayout({ signOut}: Props) {
   const slug = 'test'; // FIXME
 
   const me = useProfile() as User;
-  const client = useMemo(() => {
-    return new Client({
-      environment: Environment.Custom,
-      customUrl: `${PROXY_URL}/seller/${slug}`,
-    });
-  }, [slug]);
 
   const {
     data: projectWrapper,
@@ -54,6 +48,21 @@ export default function ConsoleLayout({ signOut}: Props) {
 
     return projectWrapper.projectByUser.items[0];
   }, [projectWrapper]);
+
+  console.log({projectWrapper, project})
+
+  const client = useMemo(() => {
+    if (project) {
+      return new Client({
+        environment: Environment.Custom,
+        customUrl: `${PROXY_URL}/seller/${project.id}`,
+      });
+    }
+  }, [slug, project]);
+
+
+
+
 
   if (!called || projectLoading) {
     return <SpinnerOverlay spinning={true} />;

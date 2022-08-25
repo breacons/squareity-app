@@ -26,6 +26,7 @@ export const ProjectBooking = ({}: Props) => {
   const { bookingId } = useParams();
   const { client, slug, project } = useOutletContext<ProjectContext>();
 
+  console.log(project)
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -41,7 +42,23 @@ export const ProjectBooking = ({}: Props) => {
     },
   );
 
-  // TODO: fullfillment
+  console.log({
+    query: {
+      filter: {
+        locationId: project.defaultLocationId as string,
+        startAtRange: {
+          startAt: date.utcOffset(0).startOf('date').toISOString(),
+          endAt: date.utcOffset(0).add(1, 'day').startOf('date').toISOString(),
+        },
+        segmentFilters: [
+          {
+            serviceVariationId: proposal?.getDonationAppointmentProposal?.serviceId as string,
+          },
+        ],
+      },
+    },
+  })
+
   const {
     data: slots,
     mutate: fetchSlots,
